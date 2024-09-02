@@ -1,23 +1,55 @@
 <template>
     <div>
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg bg-body-secondary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/index.html">
+            <img src="https://lebomtomboti.github.io/cpstpictrs/iphone%20zone%20(1).png" class="navbar-brand" alt="Logo" />
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" :class="{ active: currentPage === 'Home' }" href="/index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" :class="{ active: currentPage === 'About' }" href="/html/about.html">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" :class="{ active: currentPage === 'Products' }" href="/html/Products.html">Products</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" :class="{ active: currentPage === 'Checkout' }" href="/html/checkout.html">Checkout</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" :class="{ active: currentPage === 'Admin' }" href="/html/admin.html">Admin</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" :class="{ active: currentPage === 'Contact' }" href="/html/contact.html">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
   
+      <!-- Main Content -->
       <main class="container-fluid mt-5">
         <div class="contact-wrapper">
+          <!-- Contact Form -->
           <form id="contact-form" class="form-horizontal" action="https://formspree.io/f/xjvqlqny" method="post">
             <div class="form-group mt-5">
               <div class="col">
                 <input type="text" class="form-control" id="name" placeholder="NAME" name="name" required />
               </div>
             </div>
-  
             <div class="form-group">
               <div class="col-sm-12">
                 <input type="email" class="form-control" id="email" placeholder="EMAIL" name="email" required />
               </div>
             </div>
-  
             <textarea class="form-control" rows="10" placeholder="MESSAGE" name="message" required></textarea>
-  
             <button class="btn btn-dark send-button mb-5 mt-4" id="submit" type="submit" value="SEND">
               <div class="alt-send-button">
                 <i class="bi bi-send"></i><span class="send-text">SEND</span>
@@ -25,245 +57,117 @@
             </button>
           </form>
   
+          <!-- Contact Details -->
           <div class="direct-contact-container mt-5">
             <ul class="contact-list">
-              <li class="list-item">
-                <i class="bi bi-geo-alt"><span class="contact-text place">Gardens street, Cape Town</span></i>
-              </li>
-              <li class="list-item">
-                <i class="bi bi-telephone-fill"><span class="contact-text phone"><a href="tel:+27 656 013 640" title="Give me a call">021 759 7128</a></span></i>
-              </li>
-              <li class="list-item">
-                <i class="bi bi-envelope"><span class="contact-text gmail"><a href="mailto:Princetancu" title="Send me an email">iphonezone.co.za</a></span></i>
-              </li>
+              <li class="list-item"><i class="bi bi-geo-alt"><span class="contact-text place"> Cape Town</span></i></li>
+              <li class="list-item"><i class="bi bi-telephone-fill"><span class="contact-text phone"><a href="tel:+27 82 759 7128" title="Give me a call">(+27) 83 350 9812</a></span></i></li>
+              <li class="list-item"><i class="bi bi-envelope"><span class="contact-text gmail"><a href="mailto:iphonezone@gmail.com" title="Send me an email">iphonezone@gmail.com</a></span></i></li>
             </ul>
             <hr />
             <ul class="social-media-list">
-              <!-- Add social media links here -->
+              <a href="https://github.com/lebomtomboti" target="_blank" class="contact-icon">
+                <i class="bi bi-github" aria-hidden="true"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/lebo-mtomboti-a1bb47272/" target="_blank" class="contact-icon">
+                <i class="bi bi-linkedin" aria-hidden="true"></i>
+              </a>
             </ul>
             <hr />
           </div>
         </div>
       </main>
   
+      <!-- Footer -->
+      <footer class="container-fluid text-center mt-5 bg-dark pb-1">
+        <h6>@iphone zone <span id="CurrYear">{{ currentYear }}</span></h6>
+      </footer>
     </div>
   </template>
   
   <script>
   export default {
-    name: 'ContactView',
-    mounted() {
-      this.setCurrentYear();
-    },
-    methods: {
-      setCurrentYear() {
-        const year = new Date().getFullYear();
-        document.getElementById('CurrYear').textContent = year;
-      }
+    data() {
+      return {
+        currentPage: 'Contact',
+        currentYear: new Date().getFullYear()
+      };
     }
   }
   </script>
   
   <style scoped>
-/* General styles */
-body {
-  background-color: white; 
-  color: black; 
+/* Add your styles here */
+.nav-link.active {
+  font-weight: bold;
 }
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;1,500&display=swap");
 
-p {
-  color: black; 
-}
-
-/* Navbar styles */
-.navbar {
-  background-color: black; 
-}
-
-.navbar-brand img {
-  max-width: 200px; 
-}
-
-.navbar-nav .nav-link {
-  color: white; 
-  transition: color 0.3s; 
-}
-
-.navbar-nav .nav-link:hover {
-  color: black; 
-}
-
-.navbar-nav .nav-link:hover,
-.navbar-nav .nav-item:hover {
-  background-color: white; 
-}
-
-/* Contact form styles */
-.form-horizontal {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f8f9fa;  
-  border-radius: 10px;
-}
-
-.form-control {
-  margin-bottom: 15px;
-  border-radius: 5px;
-}
-
-textarea.form-control {
-  resize: vertical; 
-}
-
-input[type="text"],
-input[type="email"],
-textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+/* Universal Selector */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
-
-input[type="submit"] {
-  width: 100%;
-  padding: 10px;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+.head6 {
+  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Slab", serif;
 }
-
-.send-button {
-  width: 100%;
-  border-radius: 5px;
-  background-color: black; 
-  color: white; 
-  border: none;
-  transition: background-color 0.3s ease;
-}
-
-.send-button:hover {
-  background-color: #333; 
-}
-
-.bi-send {
-  margin-right: 5px; 
-}
-
-/* Card styles */
-.card {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  width: 300px;
-  margin: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease-in-out;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.card-img-top {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  height: 200px;
-  object-fit: cover;
-}
-
-.card-body {
-  padding: 20px;
-}
-
-.card-title {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  color: black;
-}
-
-.card-text {
-  font-size: 1rem;
-  color: gray;
-}
-
-.card-text.mt-2 {
-  font-size: 1.2rem;
-  color: black;
-}
-
-.btn-dark {
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.btn-dark:hover {
-  background-color: #555;
-}
-
-/* Footer styles */
-footer {
-  background-color: black; 
-  color: white; 
-  padding: 10px 0;
-}
-
-/* Dropdown styles */
-.dropdown {
-  float: right;
-  overflow: hidden;
-}
-
-.dropdown .dropbtn {
-  font-size: 16px;  
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
-
-.navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: black;
-}
-
-.dropdown-content {
+::-webkit-scrollbar {
   display: none;
-  position: absolute;
-  background-color: white;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
 }
 
-.dropdown-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
+Img[alt="Logo"] {
+  cursor: pointer;
+  width: 5rem;
+  aspect-ratio: 1/1;
 }
 
-.dropdown-content a:hover {
-  background-color: #ddd;
+footer {
+  margin-top: 210px;
+  background-color: #36454f;
+}
+body {
+  background-color: black;
+  color: aliceblue;
 }
 
-.dropdown:hover .dropdown-content {
-  display: block;
+/* Home Content */
+.Name {
+  position: relative;
+  -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+  font-size: 60px;
+  margin-top: 170px;
+}
+.Name span {
+  font-family: "Alfa Slab One", cursive;
+  color: aliceblue;
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  animation: Name 1s infinite;
+  animation-delay: calc(0.1s * var(--i));
+}
+@keyframes Name {
+  0%,
+  40%,
+  100% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-20px);
+  }
 }
 
-/* Specific product card styles */
+/* About Content */
+#AboutCard {
+  width: 200px;
+}
+
+/* Product Content */
 #ProductCard {
   width: 200px;
   height: 410px;
@@ -279,21 +183,334 @@ footer {
   height: 300px;
 }
 
-/* Responsive styles */
-.half {
-  width: calc(50% - 10px);
+/* Checkout Content */
+#footerCheckout {
+  margin-top: 100px;
 }
 
-/* Miscellaneous styles */
-.details {
-  color: black;
-  margin-bottom: 200px;
+#IMG {
+  height: 180px;
+}
+@media screen and (max-width: 460px) {
+  table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  table caption {
+    font-size: 1.5em;
+    margin: 0.5em 0 0.75em;
+  }
+
+  table tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 0.35em;
+  }
+
+  table th,
+  table td {
+    padding: 0.625em;
+    text-align: center;
+  }
+
+  table th {
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  @media screen and (max-width: 600px) {
+    table {
+      border: 0;
+    }
+
+    table {
+      font-size: 1.3em;
+    }
+
+    th {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+
+    tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: 0.625em;
+    }
+
+    td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: 0.8em;
+      text-align: right;
+    }
+
+    table td::before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    table td:last-child {
+      border-bottom: 0;
+    }
+  }
 }
 
-span {
-  color: black;
-  margin-bottom: 200px;
+#Total {
+  text-align: center;
+}
+
+
+
+
+/*  Contact Content */
+#contact {
+  width: 100%;
+  height: 100%;
+  margin-top: 11px;
+  padding-top: 50px;
+}
+
+.section-header {
+  text-align: center;
+  margin-top: 17px;
+  padding: 40px 0;
+  font: 300 60px "Oswald", sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+}
+
+.contact-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  max-width: 840px;
+}
+
+/* Left contact page */
+.form-horizontal {
+  /*float: left;*/
+  max-width: 400px;
+  font-family: "Lato";
+  font-weight: 400;
+}
+
+.form-control,
+textarea {
+  max-width: 400px;
+  background-color: #ffffffec;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.send-button {
+  margin-top: 15px;
+  height: 34px;
+  width: 400px;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
+
+.alt-send-button {
+  width: 400px;
+  height: 34px;
+  transition: all 0.2s ease-in-out;
+}
+
+.send-text {
+  display: block;
+  margin-top: 10px;
+  font: 700 12px "Lato", sans-serif;
+  letter-spacing: 2px;
+}
+
+.alt-send-button:hover {
+  transform: translate3d(0px, -29px, 0px);
+}
+
+/* Begin Right Contact Page */
+.direct-contact-container {
+  max-width: 400px;
+}
+
+/* Location, Phone, Email Section */
+.contact-list {
+  list-style-type: none;
+  margin-left: -30px;
+  padding-right: 20px;
+}
+
+.list-item {
+  line-height: 4;
+  color: #ffffff;
+}
+
+.contact-text {
+  font: 300 18px "Lato", sans-serif;
+  letter-spacing: 1.9px;
+  color: #ffffff;
+}
+
+.place {
+  margin-left: 62px;
+}
+
+.phone {
+  margin-left: 56px;
+}
+
+.gmail {
+  margin-left: 53px;
+}
+
+.contact-text a {
+  color: #ffffff;
+  text-decoration: none;
+  transition-duration: 0.2s;
+}
+
+.contact-text a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Social Media Icons */
+.social-media-list {
+  position: relative;
+  font-size: 22px;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.contact-icon {
+  color: #fff;
+}
+
+.contact-icon {
+  position: relative;
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  margin: 10px 3px;
+  line-height: 60px;
+  border-radius: 50%;
+  color: #fff;
+  background-color: rgb(27, 27, 27);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.contact-icon:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 0 1px #fff;
+  transition: all 0.2s ease-in-out;
+}
+
+.contact-icon:hover {
+  background-color: #fff;
+}
+
+.contact-icon:hover:after {
+  opacity: 1;
+  transform: scale(1.12);
+  transition-timing-function: cubic-bezier(0.37, 0.74, 0.15, 1.65);
+}
+
+.contact-icon:hover {
+  color: #000;
+}
+
+hr {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Media Query */
+/* Contact Page */
+@media screen and (max-width: 1024px) {
+  .contact-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .direct-contact-container,
+  .form-horizontal {
+    margin: 0 auto;
+  }
+
+  .direct-contact-container {
+    margin-top: 60px;
+    max-width: 300px;
+  }
+  .social-media-list a {
+    height: 60px;
+    width: 60px;
+    line-height: 60px;
+  }
+  .social-media-list a:after {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+  }
+}
+
+@media screen and (max-width: 555px) {
+  #contact-form {
+    width: 200px;
+  }
+  #submit {
+    width: 200px;
+  }
+  .alt-send-button {
+    margin-left: -100px;
+  }
+  .direct-contact-container {
+    margin-left: 60px;
+  }
+  .contact-text {
+    margin-left: -1px;
+  }
+}
+
+@media screen and (max-width: 412px) {
+  .direct-contact-container {
+    margin-left: -10px;
+  }
+  .contact-text {
+    margin-left: -1px;
+  }
 }
 </style>
+  
 
   
