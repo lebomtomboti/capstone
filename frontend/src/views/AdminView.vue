@@ -84,38 +84,44 @@
   </template>
   
   <script>
-  export default {
-    data() {
-      return {
-        products: [], // Array to hold product data
-        newProduct: {
-          id: '',
-          description: '',
-          image: '',
-          price: 0,
-        },
-        currentYear: new Date().getFullYear(),
-      };
+export default {
+  data() {
+    return {
+      products: [], // Array to hold product data in Rands
+      newProduct: {
+        id: '',
+        description: '',
+        image: '',
+        price: 0, // Price in Rands
+      },
+      currentYear: new Date().getFullYear(),
+    };
+  },
+  methods: {
+    isActive(route) {
+      return this.$route.path === route;
     },
-    methods: {
-      isActive(route) {
-        return this.$route.path === route;
-      },
-      sortByPrice() {
-        this.products.sort((a, b) => a.price - b.price);
-      },
-      addProduct() {
-        if (this.newProduct.description && this.newProduct.image && this.newProduct.price) {
-          this.newProduct.id = this.products.length ? this.products[this.products.length - 1].id + 1 : 1;
-          this.products.push({ ...this.newProduct });
-          this.newProduct = { id: '', description: '', image: '', price: 0 };
-        } else {
-          alert('Please fill in all fields.');
-        }
-      },
+    sortByPrice() {
+      this.products.sort((a, b) => a.price - b.price); // Sort prices in Rands
     },
-  };
-  </script>
+    addProduct() {
+      if (this.newProduct.description && this.newProduct.image && this.newProduct.price) {
+        this.newProduct.id = this.products.length ? this.products[this.products.length - 1].id + 1 : 1;
+        this.products.push({ ...this.newProduct });
+        this.newProduct = { id: '', description: '', image: '', price: 0 };
+      } else {
+        alert('Please fill in all fields.');
+      }
+    },
+    formatPrice(price) {
+      return `R${price.toFixed(2)}`; // Format price with R and two decimal places
+    },
+  },
+};
+</script>
+
+
+
   
   <style scoped>
 /* Add your styles here */

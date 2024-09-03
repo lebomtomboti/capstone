@@ -38,7 +38,7 @@
       <main class="container-fluid mt-5">
         <div class="contact-wrapper">
           <!-- Contact Form -->
-          <form id="contact-form" class="form-horizontal" action="https://formspree.io/f/xjvqlqny" method="post">
+          <form id="contact-form" class="form-horizontal" action="https://formspree.io/f/xvoedpgj" method="post">
             <div class="form-group mt-5">
               <div class="col">
                 <input type="text" class="form-control" id="name" placeholder="NAME" name="name" required />

@@ -160,7 +160,7 @@ body {
 
 /* Main Container Styling */
 .container-fluid {
-    background-color: #f8f9fa; /* Light background color for the section */
+    background-color: white; /* Light background color for the section */
     padding: 20px;
 }
 
