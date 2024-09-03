@@ -79,10 +79,7 @@
         </div>
       </main>
   
-      <!-- Footer -->
-      <footer class="container-fluid text-center p-1 mt-5 bg-dark">
-        <h6>Simamkele Enterprises @ <span>{{ currentYear }}</span></h6>
-      </footer>
+    
     </div>
   </template>
   

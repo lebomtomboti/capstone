@@ -55,10 +55,6 @@
       </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="container-fluid text-center mt-4 p-1 bg-dark">
-      <h6>@iphone zone <span>{{ currentYear }}</span></h6>
-    </footer>
   </div>
 </template>
 
