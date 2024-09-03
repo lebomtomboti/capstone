@@ -1,13 +1,31 @@
 <template>
-    <footer class="container-fluid text-center p-1 bg-dark">
-      <h6 class="">©iphone Zone | All Rights Reserved | 2024</h6>
-    </footer>
-  </template>
-  
-  <style scoped>
-  footer {
-    background-color: black;
-    color: white;
+  <div class="container-fluid pt-1 bg-black accordion-item text-center">
+      <div class="row">
+          <p class="footer1 lead text-white   "> Iphone Zone &copy;
+              <span> {{ currYear }}</span>
+          </p>
+      </div>
+  </div>
+</template>
+
+<script>
+
+export default {
+  name: "footerComp",
+  data() {
+      return {
+          currYear: new Date().getFullYear()
+      }
   }
-  </style>
+
+}
+</script>
+
+<style scoped>
+.row {
+
+  padding-bottom: -20px;
+}
+</style>
+
   

@@ -1,5 +1,64 @@
+<template>
+  <div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-secondary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"><img src="https://lebomtomboti.github.io/cpstpictrs/iphone%20zone%20(1).png"
+            class="navbar-brand" alt="Logo"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+          aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <router-link class="nav-link" :class="{ active: currentPage === 'Home' }" to="/">Home</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :class="{ active: currentPage === 'About' }" to="/about">About</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :class="{ active: currentPage === 'Products' }" to="/products">Products</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :class="{ active: currentPage === 'Checkout' }" to="/checkout">Checkout</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :class="{ active: currentPage === 'Admin' }" to="/admin">Admin</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :class="{ active: currentPage === 'Login' }" to="/login">Login</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :class="{ active: currentPage === 'Contact' }" to="/contact">Contact</router-link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
+    <!-- Main Content -->
+    <main class="container-fluid">
+      <div class="container text-center">
+        <div class="Name">
+          <span style="--i: 1">i</span>
+          <span style="--i: 2">p</span>
+          <span style="--i: 3">h</span>
+          <span style="--i: 4">o</span>
+          <span style="--i: 5">n</span>
+          <span style="--i: 6">e</span>
+        </div>
+        <div class="Name mt-5 mb-5">
+          <span style="--i: 1">z</span>
+          <span style="--i: 2">o</span>
+          <span style="--i: 3">n</span>
+          <span style="--i: 4">e</span>
+        </div>
+      </div>
+    </main>
 
+  </div>
+</template>
 <script>
 export default {
   name: 'HomeView',
