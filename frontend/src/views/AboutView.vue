@@ -34,25 +34,33 @@
       </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="container-fluid text-center">
-      <div class="container">
-        <h2 class="mt-5">About Us</h2>
-      </div>
-      <div class="container">
-        <h6 class="head6">
-          Welcome to iPhone Zones, your premier destination for the latest and most affordable iPhones.
-          Located in the heart of Cape Town, we specialize in bringing you the best in Apple’s smartphone technology without breaking the bank.
+        <div class="container">
+            <h2 class="mt-5">About Us</h2>
+        </div>
+        <div class="container">
+            <div class="row align-items-center">
+               
+                <div class="col-md-6">
+                    <img src="https://lebomtomboti.github.io/capictures/Screenshot%202024-09-03%20144340.png" alt="iPhone Zone" class="img-fluid rounded">
+                </div>
+            
+                <div class="col-md-6">
+                    <p class="head6">
+                        Welcome to iPhone Zones, your premier destination for the latest and most affordable iPhones.
+                        Located in the heart of Cape Town, we specialize in bringing you the best in Apple’s smartphone technology without breaking the bank.
 
-          At iPhone Zones, we are dedicated to offering a curated selection of the newest iPhone models.
-          Our commitment is to provide you with cutting-edge technology at prices that suit your budget. 
-          Whether you're looking for the latest flagship device or a more budget-friendly option, our inventory is designed to meet diverse needs and preferences.
+                        At iPhone Zones, we are dedicated to offering a curated selection of the newest iPhone models.
+                        Our commitment is to provide you with cutting-edge technology at prices that suit your budget. 
+                        Whether you're looking for the latest flagship device or a more budget-friendly option, our inventory is designed to meet diverse needs and preferences.
 
-          We understand that purchasing a new phone is a significant investment.
-           That's why we focus on ensuring that our offerings provide exceptional value.
-           Our knowledgeable staff is always available to guide you through our selection, ensuring you find the perfect device to fit your lifestyle and requirements.
-        </h6>
-      </div>
+                        We understand that purchasing a new phone is a significant investment.
+                        That's why we focus on ensuring that our offerings provide exceptional value.
+                        Our knowledgeable staff is always available to guide you through our selection, ensuring you find the perfect device to fit your lifestyle and requirements.
+                    </p>
+                </div>
+            </div>
+        </div>
     </main>
 
   </div>
@@ -148,6 +156,50 @@ body {
 #AboutCard {
   width: 200px;
 }
+/* Main Container Styling */
+
+/* Main Container Styling */
+.container-fluid {
+    background-color: #f8f9fa; /* Light background color for the section */
+    padding: 20px;
+}
+
+/* Heading Styling */
+h2.mt-5 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-top: 30px;
+}
+
+/* Paragraph Styling */
+.head6 {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #666;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+/* Image Styling */
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.rounded {
+    border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .head6 {
+        font-size: 0.9rem;
+    }
+}
+
+
 
 /* Product Content */
 #ProductCard {

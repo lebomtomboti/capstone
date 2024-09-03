@@ -41,18 +41,29 @@
     <main class="container-fluid">
       <div class="container text-center">
         <div class="Name">
+          <span style="--i: 1">w</span>
+          <span style="--i: 2">e</span>
+          <span style="--i: 3">l</span>
+          <span style="--i: 4">c</span>
+          <span style="--i: 5">o</span>
+          <span style="--i: 6">m</span>
+          <span style="--i: 7">e</span>
+        </div>
+        <div class="Name mt-5 mb-5">
+          <span style="--i: 1">t</span>
+          <span style="--i: 2">o</span>
+        </div>
+        <div class="Name mt-5 mb-5">
           <span style="--i: 1">i</span>
           <span style="--i: 2">p</span>
           <span style="--i: 3">h</span>
           <span style="--i: 4">o</span>
           <span style="--i: 5">n</span>
           <span style="--i: 6">e</span>
-        </div>
-        <div class="Name mt-5 mb-5">
-          <span style="--i: 1">z</span>
-          <span style="--i: 2">o</span>
-          <span style="--i: 3">n</span>
-          <span style="--i: 4">e</span>
+          <span style="--i: 7">z</span>
+          <span style="--i: 8">o</span>
+          <span style="--i: 9">n</span>
+          <span style="--i: 10">e</span>
         </div>
       </div>
     </main>
@@ -110,7 +121,7 @@ footer {
 }
 body {
   background-color: black;
-  color: aliceblue;
+  color: black
 }
 
 /* Home Content */
@@ -122,7 +133,7 @@ body {
 }
 .Name span {
   font-family: "Alfa Slab One", cursive;
-  color: aliceblue;
+  color: black;
   position: relative;
   display: inline-block;
   text-transform: uppercase;
