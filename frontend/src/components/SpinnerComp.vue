@@ -1,11 +1,13 @@
-<template>
-    <div class="d-flex justify-content-center">
-        <div class="spinner-border" role="status">
-        </div>
+<template lang="">
+    <div>
+        
     </div>
 </template>
 <script>
 export default {
-    name: 'SpinnerComp'
+    
 }
 </script>
+<style lang="">
+    
+</style>

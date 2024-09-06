@@ -1,7 +1,7 @@
 <template>
     <div>
       <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg bg-body-secondary">
+     <!--- <nav class="navbar navbar-expand-lg bg-body-secondary">
       <div class="container-fluid">
         <a class="navbar-brand" href="/"><img src="https://lebomtomboti.github.io/cpstpictrs/iphone%20zone%20(1).png"
             class="navbar-brand" alt="Logo"></a>
@@ -21,7 +21,7 @@
               <router-link class="nav-link" :class="{ active: currentPage === 'Products' }" to="/products">Products</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :class="{ active: currentPage === 'Checkout' }" to="/checkout">Checkout</router-link>
+              <router-link class="nav-link" :class="{ active: currentPage === 'Cart' }" to="/cart">Cart</router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link" :class="{ active: currentPage === 'Admin' }" to="/admin">Admin</router-link>
@@ -32,7 +32,7 @@
           </ul>
         </div>
       </div>
-    </nav>
+    </nav> -->
   
       <!-- Main Content -->
       <main class="container-fluid">

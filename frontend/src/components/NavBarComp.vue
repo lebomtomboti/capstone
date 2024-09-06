@@ -1,98 +1,61 @@
 <template>
-    <div>
-      <!-- Navbar -->
-    <!---  <nav class="navbar navbar-expand-lg bg-body-secondary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/index.html">
-            <img src="https://lebomtomboti.github.io/cpstpictrs/iphone%20zone%20(1).png" class="navbar-brand" alt="Logo" />
+  <div></div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-secondary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"><img src="https://lebomtomboti.github.io/cpstpictrs/iphone%20zone%20(1).png"
+            class="navbar-brand" alt="Logo"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+          aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <router-link class="nav-link" :class="{ active: currentPage === 'Home' }" to="/">Home</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :class="{ active: currentPage === 'About' }" to="/about">About</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :class="{ active: currentPage === 'Products' }" to="/products">Products</router-link>
+            </li>
+            <li class="nav-item ml-auto">
+          <a class="nav-link" href="#">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart
           </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" :class="{ active: currentPage === 'Home' }" href="/index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" :class="{ active: currentPage === 'About' }" href="/html/about.html">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" :class="{ active: currentPage === 'Products' }" href="/html/Products.html">Products</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" :class="{ active: currentPage === 'Cart' }" href="/html/cart.html">Cart</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" :class="{ active: currentPage === 'Admin' }" href="/html/admin.html">Admin</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" :class="{ active: currentPage === 'Contact' }" href="/html/contact.html">Contact</a>
-              </li>
-            </ul>
-          </div>
+        </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :class="{ active: currentPage === 'Admin' }" to="/admin">Admin</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :class="{ active: currentPage === 'Login' }" to="/login">Login</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :class="{ active: currentPage === 'Contact' }" to="/contact">Contact</router-link>
+            </li>
+          </ul>
         </div>
-      </nav> -->
-  
-      <!-- Main Content -->
-      <main class="container-fluid mt-5">
-        <div class="contact-wrapper">
-          <!-- Contact Form -->
-          <form id="contact-form" class="form-horizontal" action="https://formspree.io/f/xvoedpgj" method="post">
-            <div class="form-group mt-5">
-              <div class="col">
-                <input type="text" class="form-control" id="name" placeholder="NAME" name="name" required />
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-12">
-                <input type="email" class="form-control" id="email" placeholder="EMAIL" name="email" required />
-              </div>
-            </div>
-            <textarea class="form-control" rows="10" placeholder="MESSAGE" name="message" required></textarea>
-            <button class="btn btn-dark send-button mb-5 mt-4" id="submit" type="submit" value="SEND">
-              <div class="alt-send-button">
-                <i class="bi bi-send"></i><span class="send-text">SEND</span>
-              </div>
-            </button>
-          </form>
-  
-          <!-- Contact Details -->
-          <div class="direct-contact-container mt-5">
-            <ul class="contact-list">
-              <li class="list-item"><i class="bi bi-geo-alt"><span class="contact-text place"> Cape Town</span></i></li>
-              <li class="list-item"><i class="bi bi-telephone-fill"><span class="contact-text phone"><a href="tel:+27 82 759 7128" title="Give me a call">(+27) 83 350 9812</a></span></i></li>
-              <li class="list-item"><i class="bi bi-envelope"><span class="contact-text gmail"><a href="mailto:iphonezone@gmail.com" title="Send me an email">iphonezone@gmail.com</a></span></i></li>
-            </ul>
-            <hr />
-            <ul class="social-media-list">
-              <a href="https://github.com/lebomtomboti" target="_blank" class="contact-icon">
-                <i class="bi bi-github" aria-hidden="true"></i>
-              </a>
-              <a href="https://www.linkedin.com/in/lebo-mtomboti-a1bb47272/" target="_blank" class="contact-icon">
-                <i class="bi bi-linkedin" aria-hidden="true"></i>
-              </a>
-            </ul>
-            <hr />
-          </div>
-        </div>
-      </main>
-  
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        currentPage: 'Contact',
-        currentYear: new Date().getFullYear()
-      };
-    }
+      </div>
+    </nav>
+
+</template>
+<script>
+export default {
+  name: 'HomeView',
+  data() {
+    return {
+      currentPage: 'Home',
+      currentYear: new Date().getFullYear()
+    };
+  },
+  mounted() {
+    this.currentYear = new Date().getFullYear();
   }
-  </script>
-  
-  <style scoped>
+}
+</script>
+
+<style scoped>
 /* Add your styles here */
 .nav-link.active {
   font-weight: bold;
@@ -128,7 +91,7 @@ footer {
 }
 body {
   background-color: black;
-  color: aliceblue;
+  color: black
 }
 
 /* Home Content */
@@ -140,7 +103,7 @@ body {
 }
 .Name span {
   font-family: "Alfa Slab One", cursive;
-  color: aliceblue;
+  color: black;
   position: relative;
   display: inline-block;
   text-transform: uppercase;
@@ -507,6 +470,7 @@ hr {
   }
 }
 </style>
-  
 
+
+  
   

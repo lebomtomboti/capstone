@@ -16,7 +16,7 @@
           </div>
           <button @click.prevent="Login()" type="submit" class="mb-3">LOGIN</button>
           <router-link to="/register">
-            Not a member?
+            Don't have account?
             Signup now</router-link>
         </form>
       </div>

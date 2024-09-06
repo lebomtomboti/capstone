@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-secondary">
+   <!---- <nav class="navbar navbar-expand-lg bg-body-secondary">
       <div class="container-fluid">
         <a class="navbar-brand" href="/"><img src="https://lebomtomboti.github.io/cpstpictrs/iphone%20zone%20(1).png"
             class="navbar-brand" alt="Logo"></a>
@@ -20,9 +20,11 @@
             <li class="nav-item">
               <router-link class="nav-link" :class="{ active: currentPage === 'Products' }" to="/products">Products</router-link>
             </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :class="{ active: currentPage === 'Checkout' }" to="/checkout">Checkout</router-link>
-            </li>
+            <li class="nav-item ml-auto">
+          <a class="nav-link" href="#">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart
+          </a>
+        </li>
             <li class="nav-item">
               <router-link class="nav-link" :class="{ active: currentPage === 'Admin' }" to="/admin">Admin</router-link>
             </li>
@@ -35,10 +37,10 @@
           </ul>
         </div>
       </div>
-    </nav>
+    </nav> -->
 
     <!-- Main Content -->
-    <main class="container-fluid">
+   <!--- <main class="container-fluid">
       <div class="container text-center">
         <div class="Name">
           <span style="--i: 1">w</span>
@@ -66,7 +68,7 @@
           <span style="--i: 10">e</span>
         </div>
       </div>
-    </main>
+    </main>  -->
 
   </div>
 </template>
