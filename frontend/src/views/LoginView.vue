@@ -1,59 +1,49 @@
 <template>
-    <div class="Login">
-  
-      <div class="login-form mx-auto ">
-        <div class="text">
-          LOGIN
-        </div>
-        <form>
-          <div class="field">
-            <div class="fas "> <i class="bi bi-envelope"></i></div>
-            <input v-model="payload.emailAdd" type="email" placeholder="email@example.com ">
-          </div>
-          <div class="field">
-            <div class="fas "> <i class="bi bi-lock-fill"></i></div>
-            <input v-model="payload.userPwd" type="password" placeholder="Password">
-          </div>
-          <button @click.prevent="Login()" type="submit" class="mb-3">LOGIN</button>
-          <router-link to="/register">
-            Don't have account?
-            Signup now</router-link>
-        </form>
+  <div class="Login">
+    <div class="login-form mx-auto">
+      <div class="text">
+        LOGIN
       </div>
+      <form>
+        <div class="field">
+          <div class="fas"> <i class="bi bi-envelope"></i></div>
+          <input v-model="payload.emailAdd" type="email" placeholder="email@example.com">
+        </div>
+        <div class="field">
+          <div class="fas"> <i class="bi bi-lock-fill"></i></div>
+          <input v-model="payload.userPwd" type="password" placeholder="Password">
+        </div>
+        <button @click.prevent="Login()" type="submit" class="mb-3">LOGIN</button>
+        <router-link to="/register">
+          Don't have account?
+          Signup now
+        </router-link>
+      </form>
     </div>
-  
-  
-  
-  </template>
-  
-  
-  
-  
-  <script>
-  export default {
-    data() {
-      return {
-        payload: {
-          emailAdd: null,
-          userPwd: null,
-        }
-      }
-    },
-    components: {
-  
-    },
-    computed: {
-  
-  
-    },
-  
-  
-    methods: {
-      Login() {
-        this.$store.dispatch('Login', this.payload)
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      payload: {
+        emailAdd: null,
+        userPwd: null,
       }
     }
+  },
+  methods: {
+    Login() {
+      this.$store.dispatch('Login', this.payload)
+    },
+    logout() {
+      // Mock logout logic
+      localStorage.removeItem('user');
+      this.$router.push({ name: 'Home' });
+    }
   }
+}
   </script>
   
   <style scoped>

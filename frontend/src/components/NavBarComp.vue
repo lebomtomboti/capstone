@@ -1,14 +1,212 @@
 <template>
+  <div class="landing-page">
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <a href="#" class="logo">iphone <b>zone</b></a>
+        <ul class="links">
+          <li><router-link to="/">Home</router-link></li>
+          <li><router-link to="/about">About Us</router-link></li>
+          <li><router-link to="/products">Products</router-link></li>
+          <li><router-link to="/cart">Cart</router-link></li>
+          <li><router-link to="/admin">Admin</router-link></li>
+          <li><router-link to="/contact">contact</router-link></li>
+          
+        </ul>
+      </div>
+    </header>
+
+    <!-- Content -->
+    
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'HomeView'
+}
+</script>
+
+<style scoped>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive Containers */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+/* Landing Page Styles */
+.landing-page header {
+  min-height: 80px;
+  display: flex;
+}
+
+@media (max-width: 767px) {
+  .landing-page header {
+    min-height: auto;
+    display: initial;
+  }
+}
+
+.landing-page header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (max-width: 767px) {
+  .landing-page header .container {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.landing-page header .logo {
+  color: #5d5d5d;
+  font-style: italic;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+@media (max-width: 767px) {
+  .landing-page header .logo {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.landing-page header .links {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 767px) {
+  .landing-page header .links {
+    text-align: center;
+    gap: 10px;
+  }
+}
+
+.landing-page header .links li {
+  margin-left: 30px;
+  color: #5d5d5d;
+  cursor: pointer;
+  transition: .3s;
+}
+
+@media (max-width: 767px) {
+  .landing-page header .links li {
+    margin-left: auto;
+  }
+}
+
+.landing-page header .links li.cta {
+  border-radius: 20px;
+  padding: 10px 20px;
+  color: #FFF;
+  background-color: #6c63ff;
+}
+
+.landing-page header .links li:not(.cta):hover {
+  color: #6c63ff;
+}
+
+.landing-page .content .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 140px;
+  min-height: calc(100vh - 80px);
+}
+
+@media (max-width: 767px) {
+  .landing-page .content .container {
+    gap: 0;
+    min-height: calc(100vh - 101px);
+    justify-content: center;
+    flex-direction: column-reverse;
+  }
+}
+
+@media (max-width: 767px) {
+  .landing-page .content .info {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+}
+
+.landing-page .content .info h1 {
+  color: #5d5d5d;
+  font-size: 44px;
+}
+
+.landing-page .content .info p {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 15px;
+  color: #5d5d5d;
+}
+
+.landing-page .content .info button {
+  border: 0;
+  border-radius: 20px;
+  padding: 12px 30px;
+  margin-top: 30px;
+  cursor: pointer;
+  color: #FFF;
+  background-color: #6c63ff;
+}
+
+.landing-page .content .image img {
+  max-width: 100%;
+}
+</style>
+<!--<template>
   <div></div>
-    <!-- Navbar -->
+   
     <nav class="navbar navbar-expand-lg bg-body-secondary">
       <div class="container-fluid">
         <a class="navbar-brand" href="/"><img src="https://lebomtomboti.github.io/cpstpictrs/iphone%20zone%20(1).png"
             class="navbar-brand" alt="Logo"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
-          aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+       
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
@@ -20,11 +218,11 @@
             <li class="nav-item">
               <router-link class="nav-link" :class="{ active: currentPage === 'Products' }" to="/products">Products</router-link>
             </li>
-            <li class="nav-item ml-auto">
-          <a class="nav-link" href="#">
-            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart
-          </a>
-        </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :class="{ active: currentPage === 'Cart' }" to="/cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+              </router-link>
+            </li>
             <li class="nav-item">
               <router-link class="nav-link" :class="{ active: currentPage === 'Admin' }" to="/admin">Admin</router-link>
             </li>
@@ -54,6 +252,7 @@ export default {
   }
 }
 </script>
+
 
 <style scoped>
 /* Add your styles here */
@@ -469,7 +668,78 @@ hr {
     margin-left: -1px;
   }
 }
-</style>
+</style> 
+
+<style scoped>
+.navbar {
+  width: 100%; /* Full width */
+  position: fixed; /* Fix the navbar to the top */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Ensure it stays above other content */
+  margin: 0; /* Remove default margin */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  background-color: #f8f9fa; /* Background color for the navbar */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand-img {
+  height: 50px; /* Adjust size as needed */
+}
+
+.navbar-toggler {
+  border: none; /* Remove border from the toggler */
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.navbar-nav .nav-item {
+  display: inline-block;
+  margin-left: 50px;
+  height: 80px;
+  position: relative;
+  line-height: 80px;
+}
+
+.navbar-nav .nav-link {
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 15px;
+  color: #333; /* Default color */
+  transition: color 0.3s;
+}
+
+.navbar-nav .nav-link.active {
+  color: #007bff; /* Active link color */
+}
+
+.navbar-nav .nav-link:hover {
+  color: #0056b3; /* Color on hover */
+}
+
+.navbar-nav .nav-item i {
+  margin-right: 0.5rem; /* Spacing between icon and text */
+}
+
+/* Additional styling to push content below the navbar */
+body {
+  padding-top: 80px; /* Offset body content to avoid overlap with the fixed navbar */
+}
+</style> -->
+
 
 
   

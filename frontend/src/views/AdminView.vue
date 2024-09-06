@@ -1,68 +1,39 @@
-<template>
-    <div>
-      <!-- Navbar -->
-     <!--- <nav class="navbar navbar-expand-lg bg-body-secondary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/"><img src="https://lebomtomboti.github.io/cpstpictrs/iphone%20zone%20(1).png"
-            class="navbar-brand" alt="Logo"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
-          aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+<!----<template>
+  <div>
+    <main class="container-fluid">
+  
+      <div class="container text-end mt-3 mb-0">
+        <button class="btn btn-dark" type="button" @click="sortByPrice">
+          Sort by Price
         </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <router-link class="nav-link" :class="{ active: currentPage === 'Home' }" to="/">Home</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :class="{ active: currentPage === 'About' }" to="/about">About</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :class="{ active: currentPage === 'Products' }" to="/products">Products</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :class="{ active: currentPage === 'Cart' }" to="/cart">Cart</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :class="{ active: currentPage === 'Admin' }" to="/admin">Admin</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :class="{ active: currentPage === 'Contact' }" to="/contact">Contact</router-link>
-            </li>
-          </ul>
-        </div>
       </div>
-    </nav> -->
-  
-      <!-- Main Content -->
-      <main class="container-fluid">
-        <div class="container text-end mt-3 mb-0">
-          <button class="btn btn-dark" type="button" aria-expanded="false" @click="sortByPrice">
-            Sort by Price
-          </button>
-        </div>
-  
-        <div class="container mt-3" id="table">
-          <table class="table mt-5 m-0 text-center">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Description</th>
-                <th scope="col">Image</th>
-                <th scope="col">Price</th>
-              </tr>
-            </thead>
-            <tbody id="Products-data">
-              <tr v-for="product in products" :key="product.id">
-                <td>{{ product.id }}</td>
-                <td>{{ product.description }}</td>
-                <td><img :src="product.image" alt="Product Image" width="50" /></td>
-                <td>${{ product.price.toFixed(2) }}</td>
-              </tr>
-            </tbody>
-          </table>
-  
-          <table class="SecTeb d-none d-md-block">
+
+     
+      <div class="container mt-3">
+        
+        <table class="table table-striped table-bordered mt-5">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Description</th>
+              <th scope="col">Image</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody id="Products-data">
+            <tr v-for="product in products" :key="product.id">
+              <td>{{ product.id }}</td>
+              <td>{{ product.description }}</td>
+              <td><img :src="product.image" alt="Product Image" class="img-thumbnail" /></td>
+              <td>{{ formatPrice(product.price) }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        
+        <div class="d-none d-md-block mt-5">
+          <h4>Add New Product</h4>
+          <table class="table table-bordered">
             <thead>
               <tr>
                 <th><input type="text" placeholder="Description" v-model="newProduct.description" required /></th>
@@ -77,13 +48,12 @@
             </thead>
           </table>
         </div>
-      </main>
-  
-    
-    </div>
-  </template>
-  
-  <script>
+      </div>
+    </main>
+  </div>
+</template> -->
+
+<!----<script>
 export default {
   data() {
     return {
@@ -119,6 +89,61 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+/* General styling for the page */
+.table {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.table img {
+  max-width: 100px;
+  height: auto;
+}
+
+.img-thumbnail {
+  border: 1px solid #ddd;
+  border-radius: .25rem;
+}
+
+thead th {
+  background-color: #f8f9fa;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f2f2f2;
+}
+
+.table-bordered th, .table-bordered td {
+  border: 1px solid #dee2e6;
+}
+
+.btn-dark {
+  background-color: #343a40;
+  border-color: #343a40;
+}
+
+.btn-dark:hover {
+  background-color: #23272b;
+  border-color: #1d2124;
+}
+
+input[type="text"], input[type="number"] {
+  width: 100%;
+}
+
+.d-md-block {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .d-md-block {
+    display: none;
+  }
+}
+</style>
+
 
 
 
@@ -537,7 +562,143 @@ hr {
     margin-left: -1px;
   }
 }
-</style>
+</style> -->
  
-  
+<template>
+  <div>
+    <main class="container-fluid">
+      <!-- Sort by Price Button -->
+      <div class="container text-end mt-3 mb-0">
+        <button class="btn update-btn" type="button" @click="sortByPrice">
+          Sort by Price
+        </button>
+      </div>
+
+      <!-- Products Table -->
+      <div class="container mt-3">
+        <!-- Display Table -->
+        <table class="table mt-5">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Description</th>
+              <th scope="col">Image</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody id="Products-data">
+            <tr v-for="product in products" :key="product.id">
+              <td>{{ product.id }}</td>
+              <td>{{ product.description }}</td>
+              <td><img :src="product.image" alt="Product Image" class="img-thumbnail" /></td>
+              <td>{{ formatPrice(product.price) }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Add Product Form (only visible on medium screens and larger) -->
+        <div class="d-none d-md-block mt-5">
+          <h4>Add New Product</h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <th><input type="text" placeholder="Description" v-model="newProduct.description" required /></th>
+                <th><input type="text" placeholder="Image URL" v-model="newProduct.image" required /></th>
+                <th><input type="number" placeholder="Price" v-model="newProduct.price" required /></th>
+                <th>
+                  <button class="btn add-btn" type="button" @click="addProduct">
+                    Add Product
+                  </button>
+                </th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      products: [], // Array to hold product data
+      newProduct: {
+        id: '',
+        description: '',
+        image: '',
+        price: 0, // Price
+      },
+      currentYear: new Date().getFullYear(),
+    };
+  },
+  methods: {
+    isActive(route) {
+      return this.$route.path === route;
+    },
+    sortByPrice() {
+      this.products.sort((a, b) => a.price - b.price); // Sort prices
+    },
+    addProduct() {
+      if (this.newProduct.description && this.newProduct.image && this.newProduct.price) {
+        this.newProduct.id = this.products.length ? this.products[this.products.length - 1].id + 1 : 1;
+        this.products.push({ ...this.newProduct });
+        this.newProduct = { id: '', description: '', image: '', price: 0 };
+      } else {
+        alert('Please fill in all fields.');
+      }
+    },
+    formatPrice(price) {
+      return `R${price.toFixed(2)}`; // Format price with R and two decimal places
+    },
+  },
+};
+</script>
+
+<style scoped>
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.add-btn {
+  background-color: #4CAF50; /* Green */
+}
+
+.update-btn {
+  background-color: #2196F3; /* Blue */
+}
+
+.delete-btn {
+  background-color: #f44336; /* Red */
+}
+
+.img-thumbnail {
+  max-width: 100px;
+  height: auto;
+}
+</style>
+
   

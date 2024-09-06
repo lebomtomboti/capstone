@@ -1,68 +1,33 @@
 <template>
   <div>
-    <!-- Navbar -->
-   <!---- <nav class="navbar navbar-expand-lg bg-body-secondary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/"><img src="https://lebomtomboti.github.io/cpstpictrs/iphone%20zone%20(1).png"
-            class="navbar-brand" alt="Logo"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
-          aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <router-link class="nav-link" :class="{ active: currentPage === 'Home' }" to="/">Home</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :class="{ active: currentPage === 'About' }" to="/about">About</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :class="{ active: currentPage === 'Products' }" to="/products">Products</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :class="{ active: currentPage === 'Cart' }" to="/cart">Cart</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :class="{ active: currentPage === 'Admin' }" to="/admin">Admin</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :class="{ active: currentPage === 'Contact' }" to="/contact">Contact</router-link>
-            </li>
-          </ul>
+    <main class="container-fluid text-center">
+      <div class="container">
+        <h2 class="mt-5">About Us</h2>
+      </div>
+      <div class="container">
+        <div class="about-grid">
+          <!-- Image -->
+          <div class="about-image">
+            <img src="https://lebomtomboti.github.io/capictures/Screenshot%202024-09-03%20144340.png" alt="iPhone Zone" class="img-fluid rounded">
+          </div>
+          <!-- Content -->
+          <div class="about-content">
+            <p class="head6">
+              Welcome to iPhone Zones, your premier destination for the latest and most affordable iPhones.
+              Located in the heart of Cape Town, we specialize in bringing you the best in Apple’s smartphone technology without breaking the bank.
+
+              At iPhone Zones, we are dedicated to offering a curated selection of the newest iPhone models.
+              Our commitment is to provide you with cutting-edge technology at prices that suit your budget. 
+              Whether you're looking for the latest flagship device or a more budget-friendly option, our inventory is designed to meet diverse needs and preferences.
+
+              We understand that purchasing a new phone is a significant investment.
+              That's why we focus on ensuring that our offerings provide exceptional value.
+              Our knowledgeable staff is always available to guide you through our selection, ensuring you find the perfect device to fit your lifestyle and requirements.
+            </p>
+          </div>
         </div>
       </div>
-    </nav> -->
-
-    <main class="container-fluid text-center">
-        <div class="container">
-            <h2 class="mt-5">About Us</h2>
-        </div>
-        <div class="container">
-            <div class="row align-items-center">
-               
-                <div class="col-md-6">
-                    <img src="https://lebomtomboti.github.io/capictures/Screenshot%202024-09-03%20144340.png" alt="iPhone Zone" class="img-fluid rounded">
-                </div>
-            
-                <div class="col-md-6">
-                    <p class="head6">
-                        Welcome to iPhone Zones, your premier destination for the latest and most affordable iPhones.
-                        Located in the heart of Cape Town, we specialize in bringing you the best in Apple’s smartphone technology without breaking the bank.
-
-                        At iPhone Zones, we are dedicated to offering a curated selection of the newest iPhone models.
-                        Our commitment is to provide you with cutting-edge technology at prices that suit your budget. 
-                        Whether you're looking for the latest flagship device or a more budget-friendly option, our inventory is designed to meet diverse needs and preferences.
-
-                        We understand that purchasing a new phone is a significant investment.
-                        That's why we focus on ensuring that our offerings provide exceptional value.
-                        Our knowledgeable staff is always available to guide you through our selection, ensuring you find the perfect device to fit your lifestyle and requirements.
-                    </p>
-                </div>
-            </div>
-        </div>
     </main>
-
   </div>
 </template>
 
@@ -87,6 +52,53 @@ export default {
 </script>
 
 <style scoped>
+/* Grid container */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 20px; /* Space between columns */
+  align-items: center;
+}
+
+/* Image styling */
+.about-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px; /* Optional rounded corners */
+}
+
+/* Content styling */
+.about-content {
+  text-align: left;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr; /* Stack columns vertically on small screens */
+  }
+
+  .about-content, .about-image {
+    text-align: center;
+  }
+  
+  .about-image img {
+    width: 100%; /* Ensure image takes full width on small screens */
+    height: auto; /* Maintain aspect ratio */
+  }
+}
+
+/* General styling for text */
+.head6 {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+</style>
+
+
+<!--<style scoped>
 /* Add your styles here */
 .nav-link.active {
   font-weight: bold;
@@ -537,6 +549,34 @@ hr {
     margin-left: -1px;
   }
 }
+</style> -->
+
+<style scoped>
+.about-section {
+  margin-top: 40px;
+}
+
+.about-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.about-content {
+  text-align: left;
+  padding: 0 15px;
+}
+
+.head6 {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .about-image, .about-content {
+    text-align: center;
+  }
+  .about-content {
+    padding: 0;
+  }
+}
 </style>
-
-
