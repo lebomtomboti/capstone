@@ -2,42 +2,34 @@ import { createStore } from 'vuex';
 import axios from 'axios';
 
 const store = createStore({
-  state() {
-    return {
-      products: [],
-      loading: false,
-      error: null
-    };
+  state: {
+    products: [],
+    cart: []
   },
   mutations: {
     setProducts(state, products) {
       state.products = products;
     },
-    setLoading(state, loading) {
-      state.loading = loading;
-    },
-    setError(state, error) {
-      state.error = error;
-    }
-  },
-  actions: {
-    async fetchProducts({ commit }) {
-      commit('setLoading', true);
-      try {
-        const response = await axios.get('https://capstone-tlul.onrender.com/products');
-        commit('setProducts', response.data);
-      } catch (error) {
-        commit('setError', 'Failed to fetch products');
-        console.error(error);
-      } finally {
-        commit('setLoading', false);
+    addToCart(state, product) {
+      const existingProduct = state.cart.find(item => item.id === product.id);
+      if (existingProduct) {
+        existingProduct.quantity += 1; // Increase quantity if already in cart
+      } else {
+        state.cart.push({ ...product, quantity: 1 }); // Add new product to cart with quantity 1
       }
     }
   },
-  getters: {
-    products: (state) => state.products,
-    loading: (state) => state.loading,
-    error: (state) => state.error
+  actions: {
+    fetchProducts({ commit }) {
+      // Fetch products from API and commit the result to the state
+      axios.get('/api/products')
+        .then(response => {
+          commit('setProducts', response.data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
   }
 });
 

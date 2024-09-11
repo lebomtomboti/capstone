@@ -1,102 +1,70 @@
+// CartPage.vue
 <template>
-    <div>
-      <h1>Shopping Cart</h1>
-  
-      <table>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(item, index) in cartItems" :key="index">
-            <td>{{ item.name }}</td>
-            <td>{{ item.quantity }}</td>
-            <td>${{ item.price.toFixed(2) }}</td>
-            <td>
-              <button class="update-btn" @click="updateItem(index)">Update</button>
-              <button class="delete-btn" @click="deleteItem(index)">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-  
-      <div class="action-btns">
-        <button class="add-btn" @click="addItem">Add Item</button>
-      </div>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        cartItems: [
-          { name: 'Item 1', quantity: 1, price: 19.99 },
-          { name: 'Item 2', quantity: 2, price: 9.99 },
-          // Add initial items as needed
-        ]
-      };
+  <div>
+    <h1>Products</h1>
+    <ul>
+      <li v-for="product in products" :key="product.id">
+        {{ product.name }} - {{ product.price }}
+        <button @click="addToCart(product)">Add to Cart</button>
+      </li>
+    </ul>
+    <h1>Cart</h1>
+    <ul>
+      <li v-for="item in cartItems" :key="item.id">
+        {{ item.name }} ({{ item.quantity }})
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+export default {
+  computed: {
+    products() {
+      return this.$store.state.products;
     },
-    methods: {
-      addItem() {
-        this.cartItems.push({ name: 'New Item', quantity: 1, price: 0.00 });
-      },
-      updateItem(index) {
-        this.cartItems[index].quantity += 1; // Example action
-      },
-      deleteItem(index) {
-        this.cartItems.splice(index, 1);
-      }
+    cartItems() {
+      return this.$store.state.cart;
     }
-  };
-  </script>
+  },
+  methods: {
+    addToCart(product) {
+      this.$store.commit('addToCart', product);
+    }
+  }
+}
+</script>
   
   <style scoped>
-  table {
-    width: 100%;
-    border-collapse: collapse;
+  /* Cart page styles */
+  .cart-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
   }
   
-  table, th, td {
-    border: 1px solid #ddd;
+  .cart-item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 15px;
   }
   
-  th, td {
-    padding: 8px;
-    text-align: left;
+  .cart-item-info {
+    flex: 1;
   }
   
-  th {
-    background-color: #f4f4f4;
+  .cart-item-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
   }
   
-  button {
-    padding: 10px 15px;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  
-  .add-btn {
-    background-color: #4CAF50; /* Green */
-  }
-  
-  .update-btn {
-    background-color: #2196F3; /* Blue */
-  }
-  
-  .delete-btn {
-    background-color: #f44336; /* Red */
-  }
-  
-  .action-btns {
-    margin-top: 20px;
+  .cart-item-price {
+    font-size: 0.875rem;
+    color: #333;
   }
   </style>
+  
   
   
