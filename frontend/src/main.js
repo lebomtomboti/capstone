@@ -1,12 +1,14 @@
+// main.js
 import { createApp } from 'vue';
 import App from './App.vue';
-import router from './router'; 
-import store from './store';
-import '@fortawesome/fontawesome-free/css/all.css';
+import store from './store'; // Import Vuex store
+import router from './router';
 
-createApp(App)
-  .use(router) 
-  .use(store) 
-  .mount('#app');
+const app = createApp(App);
+app.use(store); // Use Vuex store
+app.use(router);
+app.mount('#app');
+
+
 
 

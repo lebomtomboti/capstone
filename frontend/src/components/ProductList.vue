@@ -44,12 +44,16 @@ export default {
       return `R${price.toFixed(2)}`; // Format price with R and two decimal places
     },
     addToCart(product) {
-      // Implement add to cart functionality
+      // Example of adding to a cart and redirecting
       console.log('Adding to cart:', product);
+
+      // Navigate to the cart page
+      this.$router.push({ name: 'cart' });
     }
   }
 };
 </script>
+
 
 <style scoped>
 /* Add your styles here */
