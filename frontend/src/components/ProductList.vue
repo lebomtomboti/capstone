@@ -19,39 +19,31 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 
 export default {
-  data() {
+  setup() {
+    const store = useStore();
+    const products = computed(() => store.state.products);
+
     return {
-      products: [] // Array to hold all products
+      products,
     };
   },
-  created() {
-    this.fetchProducts();
-  },
   methods: {
-    async fetchProducts() {
-      try {
-        // Fetch all products from the backend
-        const response = await axios.get('/api/products');
-        this.products = response.data;
-      } catch (error) {
-        console.error('Failed to fetch products:', error);
-      }
-    },
     formatPrice(price) {
       return `R${price.toFixed(2)}`; // Format price with R and two decimal places
     },
     addToCart(product) {
-      // Example of adding to a cart and redirecting
-      console.log('Adding to cart:', product);
+      // Dispatch the addToCart action
+      this.$store.dispatch('addToCart', product);
 
       // Navigate to the cart page
       this.$router.push({ name: 'cart' });
     }
   }
-};
+}
 </script>
 
 

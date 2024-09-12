@@ -1,133 +1,211 @@
 <template>
-  <div>
-    <h2>Cart</h2>
-    <!-- Display success message for item operations -->
-    <div v-if="showSuccessMessage" class="alert alert-success">
-      {{ successMessage }}
+  <div class="cart-page">
+    <h1>Your Cart</h1>
+    <div v-if="cartItems.length === 0">
+      <p>Your cart is empty.</p>
     </div>
-    <!-- Display error message if needed -->
-    <div v-if="showErrorMessage" class="alert alert-danger">
-      {{ errorMessage }}
+    <div v-else>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>URL</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in cartItems" :key="item.id">
+              <td><img :src="item.imageUrl" alt="Item Image" class="item-image" /></td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>
+                <a :href="item.url" target="_blank">{{ item.url }}</a>
+              </td>
+              <td>
+                <button @click="editItem(item.id)">Edit</button>
+                <button @click="removeItem(item.id)">Remove</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button class="add-item-button" @click="addItem">Add New Item</button>
     </div>
-
-    <ul v-if="cartItems.length">
-      <li v-for="item in cartItems" :key="item.id">
-        <div class="cart-item">
-          <img :src="item.image" class="cart-item-image" alt="Product Image">
-          <div class="cart-item-info">
-            <h5>{{ item.description }}</h5>
-            <p>{{ formatPrice(item.price) }}</p>
-            <input type="number" v-model.number="item.quantity" @change="updateCart(item)" min="1" />
-            <button @click="removeFromCart(item.id)">Remove</button>
-          </div>
-        </div>
-      </li>
-    </ul>
-
-    <p v-else>Your cart is empty</p>
-
-    <div v-if="cartItems.length">
-      <p>Total: {{ formatPrice(totalPrice) }}</p>
-      <button @click="checkout">Checkout</button>
-    </div>
+    <Checkout />
   </div>
 </template>
 
 <script>
+import { ref } from 'vue';
+import Checkout from '../components/CheckoutComp.vue';
+
 export default {
-  data() {
-    return {
-      cartItems: [],
-      showSuccessMessage: false,
-      showErrorMessage: false,
-      successMessage: '',
-      errorMessage: ''
+  name: 'CartView',
+  components: {
+    Checkout
+  },
+  setup() {
+    const cartItems = ref([
+      { id: 1, name: 'Product 1', quantity: 1, url: 'https://example.com/product1', imageUrl: 'https://via.placeholder.com/100' },
+      { id: 2, name: 'Product 2', quantity: 2, url: 'https://example.com/product2', imageUrl: 'https://via.placeholder.com/100' }
+    ]);
+
+    const addItem = () => {
+      const url = prompt('Enter URL for new item:', 'https://example.com/new-product');
+      const imageUrl = prompt('Enter image URL for new item:', 'https://via.placeholder.com/100');
+      if (url && imageUrl) {
+        const newItem = { id: Date.now(), name: 'New Product', quantity: 1, url, imageUrl };
+        cartItems.value.push(newItem);
+      }
     };
-  },
-  created() {
-    this.loadCart();
-  },
-  computed: {
-    totalPrice() {
-      return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-    }
-  },
-  methods: {
-    loadCart() {
-      try {
-        this.cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-      } catch (error) {
-        this.errorMessage = 'Failed to load cart.';
-        this.showErrorMessage = true;
+
+    const editItem = (id) => {
+      const item = cartItems.value.find(item => item.id === id);
+      if (item) {
+        const newQuantity = prompt('Enter new quantity:', item.quantity);
+        if (newQuantity !== null) {
+          item.quantity = Number(newQuantity);
+        }
+
+        const newUrl = prompt('Enter new URL:', item.url);
+        if (newUrl !== null) {
+          item.url = newUrl;
+        }
+
+        const newImageUrl = prompt('Enter new image URL:', item.imageUrl);
+        if (newImageUrl !== null) {
+          item.imageUrl = newImageUrl;
+        }
       }
-    },
-    formatPrice(price) {
-      return `R${price.toFixed(2)}`;
-    },
-    updateCart(updatedItem) {
-      if (updatedItem.quantity <= 0) {
-        this.removeFromCart(updatedItem.id);
-      } else {
-        this.cartItems = this.cartItems.map(item =>
-          item.id === updatedItem.id ? updatedItem : item
-        );
-        localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
-        this.successMessage = 'Cart updated successfully!';
-        this.showSuccessMessage = true;
-        setTimeout(() => this.showSuccessMessage = false, 2000); // Hide after 2 seconds
-      }
-    },
-    removeFromCart(itemId) {
-      this.cartItems = this.cartItems.filter(item => item.id !== itemId);
-      localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
-      this.successMessage = 'Item removed from cart.';
-      this.showSuccessMessage = true;
-      setTimeout(() => this.showSuccessMessage = false, 2000); // Hide after 2 seconds
-    },
-    checkout() {
-      // Implement checkout logic
-      console.log('Proceeding to checkout...');
-      // Redirect to checkout page if needed
-      this.$router.push({ name: 'checkout' });
-    }
+    };
+
+    const removeItem = (id) => {
+      cartItems.value = cartItems.value.filter(item => item.id !== id);
+    };
+
+    return {
+      cartItems,
+      addItem,
+      editItem,
+      removeItem
+    };
   }
-};
+}
 </script>
 
 <style scoped>
-.cart-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+.cart-page {
+  padding: 20px;
 }
 
-.cart-item-image {
-  width: 100px;
-  height: 100px;
+h1 {
+  margin-bottom: 20px;
+}
+
+/* Responsive Table */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  min-width: 600px; /* Minimum width to handle content */
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.add-item-button {
+  padding: 10px 20px;
+  background-color: #6c63ff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-item-button:hover {
+  opacity: 0.8;
+}
+
+a {
+  color: #6c63ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.item-image {
+  max-width: 100px;
+  max-height: 100px;
   object-fit: cover;
-  margin-right: 10px;
 }
 
-.cart-item-info {
-  flex: 1;
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .cart-page {
+    padding: 10px;
+  }
+
+  table {
+    min-width: 100%; /* Ensure table is responsive */
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+
+  th, td {
+    padding: 6px; /* Adjust padding for smaller screens */
+  }
+
+  .item-image {
+    max-width: 80px; /* Adjust image size for smaller screens */
+  }
+
+  button, .add-item-button {
+    padding: 8px 15px; /* Adjust button size for smaller screens */
+  }
 }
 
-.alert {
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-}
-
-.alert-success {
-  background-color: #d4edda;
-  color: #155724;
-}
-
-.alert-danger {
-  background-color: #f8d7da;
-  color: #721c24;
+@media (max-width: 576px) {
+  h1 {
+    font-size: 20px; /* Adjust heading size for very small screens */
+  }
 }
 </style>
+
+
+
+
+
 
   
   

@@ -1,7 +1,7 @@
 <template>
-    <div class="card">
-        <div class="card-header">
-            <slot name="cardHeader"></slot>
+    <div class=" mx-auto mt-5">
+        <div class="card bg-black">
+            <slot name="cardHeader"> </slot>
         </div>
         <div class="card-body">
             <slot name="cardBody"></slot>

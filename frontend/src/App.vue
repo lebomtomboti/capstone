@@ -1,4 +1,3 @@
-// App.vue
 <template>
   <div id="app">
     <Navbar />
@@ -24,7 +23,7 @@ export default {
   },
   data() {
     return {
-      someCondition: true, // or false
+      someCondition: true, 
     };
   },
 };

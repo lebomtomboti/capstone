@@ -1,22 +1,21 @@
 <template>
-  <div class="Login">
+  <div class="login">
     <div class="login-form mx-auto">
       <div class="text">
         LOGIN
       </div>
-      <form>
+      <form @submit.prevent="Login">
         <div class="field">
-          <div class="fas"> <i class="bi bi-envelope"></i></div>
-          <input v-model="payload.emailAdd" type="email" placeholder="email@example.com">
+          <div class="fas"><i class="bi bi-envelope"></i></div>
+          <input v-model="payload.emailAdd" type="email" placeholder="email@example.com" required>
         </div>
         <div class="field">
-          <div class="fas"> <i class="bi bi-lock-fill"></i></div>
-          <input v-model="payload.userPwd" type="password" placeholder="Password">
+          <div class="fas"><i class="bi bi-lock-fill"></i></div>
+          <input v-model="payload.userPwd" type="password" placeholder="Password" required>
         </div>
-        <button @click.prevent="Login()" type="submit" class="mb-3">LOGIN</button>
+        <button type="submit" class="mb-3">LOGIN</button>
         <router-link to="/register">
-          Don't have account?
-          Signup now
+          Don't have an account? Sign up now
         </router-link>
       </form>
     </div>
@@ -28,24 +27,27 @@ export default {
   data() {
     return {
       payload: {
-        emailAdd: null,
-        userPwd: null,
+        emailAdd: '',
+        userPwd: '',
       }
     }
   },
   methods: {
     Login() {
       this.$store.dispatch('Login', this.payload)
-    },
-    logout() {
-      // Mock logout logic
-      localStorage.removeItem('user');
-      this.$router.push({ name: 'Home' });
+        .then(() => {
+          // Optionally handle success (e.g., redirect on successful login)
+          this.$router.push({ name: 'Home' });
+        })
+        .catch((error) => {
+          // Handle error (e.g., show an error message)
+          console.error('Login failed:', error);
+        });
     }
   }
 }
-  </script>
-  
+</script>
+
   <style scoped>
   /* Universal Selector */
   *,

@@ -1,24 +1,19 @@
-// router/index.js or wherever you manage your router configuration
-
+// src/router/index.js or src/router.js
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
 import AboutView from '../views/AboutView.vue';
 import ProductsView from '../views/ProductsView.vue';
-import AdminView from '../views/AdminView.vue';
-import ContactView from '../views/ContactView.vue';
-import RegisterView from '@/views/RegisterView.vue';
 import CartView from '../views/CartView.vue';
+import AdminView from '../views/AdminView.vue';
 import LoginView from '../views/LoginView.vue';
+import RegisterView from '../views/RegisterView.vue';
 
 const routes = [
-  { path: '/', name: 'home', component: HomeView },
-  { path: '/about', name: 'about', component: AboutView },
-  { path: '/cart', name: 'cart', component: CartView },
-  { path: '/admin', name: 'admin', component: AdminView },
-  { path: '/contact', name: 'contact', component: ContactView },
-  { path: '/login', name: 'login', component: LoginView },
-  { path: '/register', name: 'register', component: RegisterView },
-  { path: '/products', name: 'Products', component: ProductsView, meta: { requiresAuth: true } },
+  { path: '/about', component: AboutView },
+  { path: '/products', component: ProductsView },
+  { path: '/cart', component: CartView },
+  { path: '/admin', component: AdminView },
+  { path: '/login', component: LoginView },
+  { path: '/register', name: 'Register', component: RegisterView }
 ];
 
 const router = createRouter({
@@ -27,6 +22,7 @@ const router = createRouter({
 });
 
 export default router;
+
 
 
 
