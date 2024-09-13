@@ -1,222 +1,243 @@
-import { createStore } from "vuex";
-import axios from "axios";
-import sweet from "sweetalert";
-const URL = "https://capstone-tlul.onrender.com"; // Update to your actual API endpoint
-import router from "../router";
-import { useCookies } from "vue3-cookies";
-const { cookies } = useCookies();
-
+import { createStore } from 'vuex'
+import axios from 'axios'
+import { toast } from 'vue3-toastify'
+import 'vue3-toastify/dist/index.css'
+import router from '@/router'
+const apiURL = 'https://capstone-tlul.onrender.com/'
 export default createStore({
   state: {
-    products: [],   
-    product: null,  
-    cart: [],       
-    user: null,    
+    users: null,
+    user: null,
+    products: null,
+    recentProducts: null,
+    product: null,
+    registrationStatus:null
   },
   getters: {
-    cartTotal(state) {
-      return state.cart.reduce((total, item) => total + item.price * item.quantity, 0);
-    },
-    productCount(state) {
-      return state.cart.reduce((count, item) => count + item.quantity, 0);
-    },
   },
   mutations: {
-    setProducts(state, products) {
-      state.products = products;
+    setUsers(state, value) {
+      state.users = value
     },
-    setProduct(state, product) {
-      state.product = product;
+    setUser(state, value) {
+      state.user = value
     },
-    addToCart(state, product) {
-      const existingProduct = state.cart.find(item => item.id === product.id);
-      if (existingProduct) {
-        existingProduct.quantity += product.quantity;
-      } else {
-        state.cart.push(product);
-      }
+    setProducts(state, value) {
+      state.products = value
     },
-    removeFromCart(state, productId) {
-      state.cart = state.cart.filter(item => item.id !== productId);
+    setLatestProducts(state, value) {
+      state.recentProducts = value
     },
-    clearCart(state) {
-      state.cart = [];
+    setProduct(state, value) {
+      state.product = value
     },
-    setUser(state, user) {
-      state.user = user;
-    },
+    setRegistrationStatus(state, status) {
+      state.registrationStatus = status;
+    }
+
   },
   actions: {
-    async fetchProducts({ commit }) {
+    async fetchUsers(context) {
       try {
-        let { results } = (await axios.get(`${URL}products`)).data;
+        const { results, msg } = await (await axios.get(`${apiURL}users`)).data
         if (results) {
-          commit("setProducts", results);
+          context.commit('setUsers', results)
+        } else {
+          toast.error(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
         }
       } catch (e) {
-        sweet({
-          title: "Error",
-          text: e.message,
-          icon: "error",
-          timer: 2000,
-        });
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
       }
     },
-    async fetchProduct({ commit }, productId) {
+    async fetchUser(context, id) {
       try {
-        let { result } = (await axios.get(`${URL}products/${productId}`)).data;
+        const { result, msg } = await (await axios.get(`${apiURL}users/${id}`)).data
         if (result) {
-          commit("setProduct", result);
+          context.commit('setUser', result)
+        } else {
+          toast.error(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
         }
       } catch (e) {
-        sweet({
-          title: "Error",
-          text: e.message,
-          icon: "error",
-          timer: 2000,
-        });
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
       }
     },
-    async addProductToCart({ commit }, product) {
+    async register(context, payload) {
       try {
-        commit("addToCart", product);
-        sweet({
-          title: "Added to Cart",
-          text: `${product.name} has been added to your cart.`,
-          icon: "success",
-          timer: 2000,
-        });
+        const { msg, err, token } = await (await axios.post(`${apiURL}users/register`, payload)).data
+        if (token) {
+          context.dispatch('fetchUsers')
+          toast.success(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
+          router.push({ name: 'login' })
+        } else {
+          toast.error(`${err}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
+        }
       } catch (e) {
-        sweet({
-          title: "Error",
-          text: e.message,
-          icon: "error",
-          timer: 2000,
-        });
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
       }
     },
-    async removeProductFromCart({ commit }, productId) {
+    async updateUser(context, payload) {
       try {
-        commit("removeFromCart", productId);
-        sweet({
-          title: "Removed from Cart",
-          text: "Product has been removed from your cart.",
-          icon: "success",
-          timer: 2000,
-        });
-      } catch (e) {
-        sweet({
-          title: "Error",
-          text: e.message,
-          icon: "error",
-          timer: 2000,
-        });
-      }
-    },
-    async placeOrder({ commit, state }) {
-      try {
-        let { msg } = (await axios.post(`${URL}orders`, { items: state.cart, userId: state.user.id })).data;
+        const { msg, err } = await (await axios.patch(`${apiURL}users/${payload.userID}`, payload)).data
         if (msg) {
-          commit("clearCart");
-          sweet({
-            title: "Order Placed",
-            text: "Your order has been placed successfully.",
-            icon: "success",
-            timer: 2000,
-          });
-          router.push({ name: "home" }); 
-        }
-      } catch (e) {
-        sweet({
-          title: "Error",
-          text: e.message,
-          icon: "error",
-          timer: 2000,
-        });
-      }
-    },
-    async login({ commit }, payload) {
-      try {
-        let { msg, user, token } = (await axios.post(`${URL}users/login`, payload)).data;
-        if (user) {
-          commit("setUser", user);
-          cookies.set("authToken", token);
-          sweet({
-            title: "Login Successful",
-            text: `Welcome back, ${user.firstName} ${user.lastName}`,
-            icon: "success",
-            timer: 2000,
-          });
-          router.push({ name: "home" });
+          context.dispatch('fetchUsers')
         } else {
-          sweet({
-            title: "Login Failed",
-            text: msg,
-            icon: "error",
-            timer: 2000,
-          });
+          toast.error(`${err}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
         }
       } catch (e) {
-        sweet({
-          title: "Error",
-          text: e.message,
-          icon: "error",
-          timer: 2000,
-        });
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
       }
     },
-    async register({ commit }, payload) {
+    async deleteUser(context, id) {
       try {
-        let { msg, user, token } = (await axios.post(`${URL}users/register`, payload)).data;
-        if (user) {
-          commit("setUser", user);
-          cookies.set("authToken", token);
-          sweet({
-            title: "Registration Successful",
-            text: `Welcome, ${user.firstName} ${user.lastName}`,
-            icon: "success",
-            timer: 2000,
-          });
-          router.push({ name: "home" });
+        const { msg, err } = await (await axios.delete(`${apiURL}users/${id}`)).data
+        if (msg) {
+          context.dispatch('fetchUsers')
         } else {
-          sweet({
-            title: "Registration Failed",
-            text: msg,
-            icon: "error",
-            timer: 2000,
-          });
+          toast.error(`${err}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
         }
       } catch (e) {
-        sweet({
-          title: "Error",
-          text: e.message,
-          icon: "error",
-          timer: 2000,
-        });
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
       }
     },
-    async logout({ commit }) {
+    //Products
+    async fetchProducts(context) {
       try {
-        cookies.remove("authToken");
-        commit("setUser", null);
-        sweet({
-          title: "Logout Successful",
-          text: "You have been logged out.",
-          icon: "success",
-          timer: 2000,
-        });
-        router.push({ name: "login" });
+        const { results } = await (await axios.get(`${apiURL}products`)).data
+        if (results) {
+          context.commit('setProducts', results)
+        } else {
+          router.push({ name: 'login' })
+        }
       } catch (e) {
-        sweet({
-          title: "Error",
-          text: e.message,
-          icon: "error",
-          timer: 2000,
-        });
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
+      }
+    },
+    // async recentProducts(context) {
+    //   try {
+    //     const { results, msg } = await (await axios.get(`${apiURL}products/recent`)).data
+    //     if (results) {
+    //       context.commit('setRecentProducts', results)
+    //     } else {
+    //       toast.error(`${msg}`, {
+    //         autoClose: 2000,
+    //         position: toast.POSITION.BOTTOM_CENTER
+    //       })
+    //     }
+    //   } catch (e) {
+    //     toast.error(`${e.message}`, {
+    //       autoClose: 2000,
+    //       position: toast.POSITION.BOTTOM_CENTER
+    //     })
+    //   }
+    // },
+    async fetchProduct(context, id) {
+      try {
+        const { results, msg } = await (await axios.get(`${apiURL}products/${id}`)).data
+        if (results) {
+          context.commit('setProducts', results)
+        } else {
+          toast.error(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
+      }
+    },
+    async addProduct(context, payload) {
+      try {
+        const { msg } = await (await axios.post(`${apiURL}products/addProducts`, payload)).data
+        if (msg) {
+          context.dispatch('fetchProducts')
+          toast.success(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
+      }
+    },
+    async updateProduct(context, payload) {
+      try {
+        const { msg } = await (await axios.patch(`${apiURL}update/${payload.productID}`, payload)).data
+        if (msg) {
+          context.dispatch('fetchProducts')
+          toast.success(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
+      }
+    },
+    async deleteProduct(context, id) {
+      try {
+        const { msg } = await (await axios.delete(`${apiURL}delete/${id}`)).data
+        if (msg) {
+          context.dispatch('fetchProducts')
+          toast.success(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
       }
     }
   },
-  modules: {}
-});
+  modules: {
+  }
+})
 
 

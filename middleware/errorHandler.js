@@ -7,7 +7,7 @@ function errorHandling(err, req, res, next){
     }else {
         next()
     }
-  }
-  export {
+}
+export {
     errorHandling
-  }
+}

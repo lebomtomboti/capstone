@@ -1,20 +1,13 @@
-import { createPool } from "mysql2";
+import { createPool } from "mysql";
 import "dotenv/config"
-
-let connection;
-
-try {
-  connection = createPool({
-    host: process.env.HOST,
-    database: process.env.DATABASE,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
+let connection = createPool({
+    host: process.env.DB_HOST,
+    database: process.env.DB_Name,
+    user: process.env.DB_UserName,
+    password: process.env.DB_UserPass,
     multipleStatements: true,
     connectionLimit: 30
-  });
-} catch (err) {
-  console.error(`Error creating connection pool: ${err}`);
-  // Handle the error accordingly
+})
+export {
+    connection
 }
-
-export { connection };
