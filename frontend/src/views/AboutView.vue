@@ -6,11 +6,11 @@
       </div>
       <div class="container">
         <div class="about-grid">
-          <!-- Image -->
+        
           <div class="about-image">
-            <img src="https://lebomtomboti.github.io/capictures/Screenshot%202024-09-03%20144340.png" alt="iPhone Zone" class="img-fluid rounded">
+            <img src="https://lebomtomboti.github.io/capictures/Screenshot%202024-09-03%20144340.png" alt="iPhone Zone" class="img-fluid rounded" />
           </div>
-          <!-- Content -->
+
           <div class="about-content">
             <p class="head6">
               Welcome to iPhone Zones, your premier destination for the latest and most affordable iPhones.

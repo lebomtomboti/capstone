@@ -1,16 +1,20 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import ProductView from '../views/ProductsView.vue' // Update the import path if necessary
+import { createRouter, createWebHistory } from 'vue';
 
 const routes = [
+  {
+    path: '/products',
+    name: 'products',
+    component: () => import('../views/ProductView.vue')
+  },
   {
     path: '/about',
     name: 'about',
     component: () => import('../views/AboutView.vue')
   },
   {
-    path: '/product/:id',
-    name: 'products',
-    component: ProductView
+    path: '/contact',
+    name: 'contact',
+    component: () => import('../views/ContactView.vue')
   },
   {
     path: '/admin',
@@ -18,28 +22,26 @@ const routes = [
     component: () => import('../views/AdminView.vue')
   },
   {
-    path: '/cart',
-    name: 'cart',
-    component: () => import('../views/CartView.vue')
-  },
-  {
-    path: '/',
-    name: 'home',
-    component: () => import('../views/ContactView.vue')
-  },
-  {
     path: '/login',
     name: 'login',
     component: () => import('../views/LoginView.vue')
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    component: () => import('../views/CartView.vue')
   }
-]
+];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes
-})
+});
 
-export default router
+export default router;
+
+
+
 
 
 
