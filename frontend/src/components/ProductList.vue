@@ -33,13 +33,13 @@ export default {
   },
   methods: {
     formatPrice(price) {
-      return `R${price.toFixed(2)}`; // Format price with R and two decimal places
+      return `R${price.toFixed(2)}`;
     },
     addToCart(product) {
-      // Dispatch the addToCart action
+      
       this.$store.dispatch('addToCart', product);
 
-      // Navigate to the cart page
+      
       this.$router.push({ name: 'cart' });
     }
   }
@@ -48,7 +48,6 @@ export default {
 
 
 <style scoped>
-/* Add your styles here */
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

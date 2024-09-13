@@ -39,6 +39,10 @@
   </script>
   
   <style scoped>
+  /* Checkout Content */
+#footerCheckout {
+  margin-top: 100px;
+}
   .checkout {
     padding: 20px;
   }

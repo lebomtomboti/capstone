@@ -44,6 +44,21 @@ onMounted(async () => {
 </script>
 
 <style>
+/* Product Content */
+#ProductCard {
+  width: 200px;
+  height: 410px;
+}
+
+#Product-Card {
+  width: 200px;
+  height: 410px;
+  margin-bottom: 32px;
+}
+
+.card-img-top {
+  height: 300px;
+}
 .container {
   padding-top: 20px;
   padding-bottom: 20px;

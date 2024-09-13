@@ -16,7 +16,7 @@
 
 
 
-                <!-- Modal edit -->
+               
                 <div class="modal fade text-black" :id="'edit' + userData.userID" tabindex="-1" aria-labelledby="edit"
                     aria-hidden="true" v-for="user in userData" :key="user.userID">
                     <div class="modal-dialog">
@@ -62,7 +62,7 @@
 
 
 
-                <!-- Modal delete-->
+                
                 <div class="modal fade" :id="'delete' + userData.userID" tabindex="-1" aria-labelledby="delete"
                     aria-hidden="true" v-for="user in userData" :key="user.userID">
                     <div class="modal-dialog">

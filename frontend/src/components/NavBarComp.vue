@@ -2,32 +2,47 @@
   <div class="landing-page">
     <header>
       <div class="container">
-        <a href="#" class="logo">iphone <b>zones</b></a>
-        <ul class="links">
-          <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/about">About</router-link></li>
-          <li><router-link to="/products">Products</router-link></li>
-          <li><router-link to="/cart">Cart</router-link></li>
-          <li><router-link to="/contact">Contact</router-link></li>
-          <li><router-link to="/admin">Admin</router-link></li>
-          <li><router-link to="/login">Login</router-link></li>
-        </ul>
+        <img
+          src="https://lebomtomboti.github.io/cpstpictrs/iphone%20zone%20(1).png"
+          class="navbar-brand"
+          alt="Logo"
+        />
+        <nav>
+          <ul class="links">
+            <li><router-link to="/">Home</router-link></li>
+            <li><router-link to="/about">About</router-link></li>
+            <li><router-link to="/products">Products</router-link></li>
+            <li><router-link to="/cart">Cart</router-link></li>
+            <li><router-link to="/contact">Contact</router-link></li>
+            <li><router-link to="/admin">Admin</router-link></li>
+            <li><router-link to="/login">Login</router-link></li>
+          </ul>
+        </nav>
       </div>
     </header>
     <div class="content">
       <div class="container">
         <div class="info">
-          <h1>Welcome to iphone Zones</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus odit nihil ullam nesciunt quidem iste, Repellendus odit nihil</p>
-          <button>Shop Now</button>
+          <h1>Welcome to iPhone Zones</h1>
+          <p>
+            Welcome to iPhone Zone! We’re thrilled to have you here, where innovation meets style. Dive into our curated selection of the latest iPhones.
+          </p>
+          <router-link to="/products">
+            <button class="shop-now">Shop Now</button>
+          </router-link>
+
         </div>
         <div class="image">
-          <img src="https://lebomtomboti.github.io/capictures/background.png" alt="Inspiration Image">
+          <img
+            src="https://lebomtomboti.github.io/capictures/background.png"
+            alt="Inspiration Image"
+          />
         </div>
       </div>
     </div>
   </div>
 </template>
+
 
 <script>
 
@@ -42,6 +57,22 @@ export default {
 }
 </script>
 <style scoped>
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+}
+
+
+.navbar-brand {
+  display: block; 
+  width: 100px; 
+  height: auto; 
+  margin-left: 0; 
+  margin-right: auto;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -62,27 +93,25 @@ ul {
   margin-left: auto;
   margin-right: auto;
 }
-/* Small */
+
 @media (min-width: 768px) {
   .container {
     width: 750px;
   }
 }
-/* Medium */
+
 @media (min-width: 992px) {
   .container {
     width: 970px;
   }
 }
-/* Large */
+
 @media (min-width: 1200px) {
   .container {
     width: 1170px;
   }
 }
-/* End Global Rules */
 
-/* Start Landing Page */
 .landing-page header {
   min-height: 80px;
   display: flex;

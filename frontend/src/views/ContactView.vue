@@ -1,43 +1,8 @@
 <template>
     <div>
-      <!-- Navbar -->
-    <!---  <nav class="navbar navbar-expand-lg bg-body-secondary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/index.html">
-            <img src="https://lebomtomboti.github.io/cpstpictrs/iphone%20zone%20(1).png" class="navbar-brand" alt="Logo" />
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" :class="{ active: currentPage === 'Home' }" href="/index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" :class="{ active: currentPage === 'About' }" href="/html/about.html">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" :class="{ active: currentPage === 'Products' }" href="/html/Products.html">Products</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" :class="{ active: currentPage === 'Cart' }" href="/html/cart.html">Cart</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" :class="{ active: currentPage === 'Admin' }" href="/html/admin.html">Admin</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" :class="{ active: currentPage === 'Contact' }" href="/html/contact.html">Contact</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav> -->
-  
-      <!-- Main Content -->
       <main class="container-fluid mt-5">
         <div class="contact-wrapper">
-          <!-- Contact Form -->
+        
           <form id="contact-form" class="form-horizontal" action="https://formspree.io/f/xvoedpgj" method="post">
             <div class="form-group mt-5">
               <div class="col">
@@ -57,7 +22,7 @@
             </button>
           </form>
   
-          <!-- Contact Details -->
+        
           <div class="direct-contact-container mt-5">
             <ul class="contact-list">
               <li class="list-item"><i class="bi bi-geo-alt"><span class="contact-text place"> Cape Town</span></i></li>
@@ -91,16 +56,18 @@
     }
   }
   </script>
+ 
   
+
   <style scoped>
-/* Add your styles here */
+
 .nav-link.active {
   font-weight: bold;
 }
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;1,500&display=swap");
 
-/* Universal Selector */
+
 *,
 *::before,
 *::after {
@@ -112,15 +79,8 @@
   font-family: "Roboto", sans-serif;
   font-family: "Roboto Slab", serif;
 }
-::-webkit-scrollbar {
-  display: none;
-}
 
-Img[alt="Logo"] {
-  cursor: pointer;
-  width: 5rem;
-  aspect-ratio: 1/1;
-}
+
 
 footer {
   margin-top: 210px;
@@ -131,7 +91,7 @@ body {
   color: aliceblue;
 }
 
-/* Home Content */
+
 .Name {
   position: relative;
   -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
@@ -158,31 +118,49 @@ body {
   }
 }
 
-/* About Content */
+
 #AboutCard {
   width: 200px;
 }
 
-/* Product Content */
-#ProductCard {
-  width: 200px;
-  height: 410px;
+.container-fluid {
+    background-color: white; 
+    padding: 20px;
 }
 
-#Product-Card {
-  width: 200px;
-  height: 410px;
-  margin-bottom: 32px;
+
+h2.mt-5 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-top: 30px;
 }
 
-.card-img-top {
-  height: 300px;
+
+.head6 {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #666;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
 }
 
-/* Checkout Content */
-#footerCheckout {
-  margin-top: 100px;
+
+
+.rounded {
+    border-radius: 8px;
 }
+@media (max-width: 768px) {
+    .head6 {
+        font-size: 0.9rem;
+    }
+}
+
+
+
+
+
 
 #IMG {
   height: 180px;
@@ -275,9 +253,6 @@ body {
 }
 
 
-
-
-/*  Contact Content */
 #contact {
   width: 100%;
   height: 100%;
@@ -305,9 +280,9 @@ body {
   max-width: 840px;
 }
 
-/* Left contact page */
+
 .form-horizontal {
-  /*float: left;*/
+  
   max-width: 400px;
   font-family: "Lato";
   font-weight: 400;
@@ -346,12 +321,12 @@ textarea {
   transform: translate3d(0px, -29px, 0px);
 }
 
-/* Begin Right Contact Page */
+
 .direct-contact-container {
   max-width: 400px;
 }
 
-/* Location, Phone, Email Section */
+
 .contact-list {
   list-style-type: none;
   margin-left: -30px;
@@ -392,7 +367,7 @@ textarea {
   text-decoration: none;
 }
 
-/* Social Media Icons */
+
 .social-media-list {
   position: relative;
   font-size: 22px;
@@ -452,8 +427,7 @@ hr {
   border-color: rgba(255, 255, 255, 0.6);
 }
 
-/* Media Query */
-/* Contact Page */
+
 @media screen and (max-width: 1024px) {
   .contact-wrapper {
     display: flex;
@@ -506,7 +480,4 @@ hr {
     margin-left: -1px;
   }
 }
-</style>
-  
-
-  
+</style> 
